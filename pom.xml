@@ -122,6 +122,7 @@
                 <quarkus.native.enabled>true</quarkus.native.enabled>
                 <sonar.projectKey>brianacharya001_code-with-quarkus</sonar.projectKey>
                 <sonar.organization>brianacharya001</sonar.organization>
+                <sonar.exclusions>Dockerfile,**/*.dockerfile</sonar.exclusions>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
             </properties>
