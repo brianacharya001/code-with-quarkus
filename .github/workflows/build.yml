@@ -35,14 +35,15 @@ jobs:
       - name: Run tests
         run: mvn test
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v4.1.0
-        # with:
-        #   sonar.projectKey: samsharma_code-with-quarkus
-        #   sonar.organization: samsharma-github
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
+      - uses: chill-viking/dotnet-sonar-scanner@v2
+        name: Scan and Publish
+        with:
+          sonar-project-key: "brianacharya001_code-with-quarkus"
+          sonar-org-key: "brianacharya001"
+          token: ${{ secrets.GIT_TOKEN }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          #working-directory: './src/dotnet-api'
+          checkout: false
 
       - name: Upload JAR to S3
         run: |
