@@ -40,6 +40,7 @@ jobs:
           FILENAME=$(basename "$FILE")
           aws s3 cp "$FILE" "s3://mrsamsharma777/builds/${TIMESTAMP}-${FILENAME}"
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: "AKIATOWGB6NWJG4WXT2Q"
+          AWS_SECRET_ACCESS_KEY: "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"
+
           AWS_DEFAULT_REGION: us-east-1
