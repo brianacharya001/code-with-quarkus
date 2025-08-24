@@ -36,7 +36,7 @@ jobs:
         run: mvn test
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+        uses: SonarSource/sonarqube-scan-action@v4.1.0
         # with:
         #   sonar.projectKey: samsharma_code-with-quarkus
         #   sonar.organization: samsharma-github
