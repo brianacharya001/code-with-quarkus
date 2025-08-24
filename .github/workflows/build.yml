@@ -38,7 +38,7 @@ jobs:
           FILE=$(find target -type f -name "*.jar" | head -n 1)
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
           FILENAME=$(basename "$FILE")
-          aws s3 cp "$FILE" "s3://your-bucket-name/builds/${TIMESTAMP}-${FILENAME}"
+          aws s3 cp "$FILE" "s3://mrsamsharma777/builds/${TIMESTAMP}-${FILENAME}"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
