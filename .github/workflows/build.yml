@@ -2,6 +2,7 @@ name: Build and Test Spring Boot App
 
 on:
   workflow_dispatch:
+  # Uncomment these if you want to trigger on push/PR
   # push:
   #   branches: [main]
   # pull_request:
@@ -33,11 +34,25 @@ jobs:
 
       - name: Run tests
         run: mvn test
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          sonar.projectKey: samsharma_code-with-quarkus
+          sonar.organization: samsharma-github
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Upload JAR to S3
         run: |
           FILE=$(find target -type f -name "*.jar" | head -n 1)
+          if [ -z "$FILE" ]; then
+            echo "❌ JAR file not found. Failing the job."
+            exit 1
+          fi
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
           FILENAME=$(basename "$FILE")
+          echo "Uploading $FILENAME to S3 bucket..."
           aws s3 cp "$FILE" "s3://mrsamsharma777/builds/${TIMESTAMP}-${FILENAME}"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
