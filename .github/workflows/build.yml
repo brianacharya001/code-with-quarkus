@@ -35,8 +35,8 @@ jobs:
       - name: Run tests
         run: mvn test
 
-      - uses: chill-viking/dotnet-sonar-scanner@v2
-        name: Scan and Publish
+      - name: Scan and Publish to SonarCloud
+        uses: chill-viking/dotnet-sonar-scanner@v2
         with:
           sonar-project-key: "brianacharya001_code-with-quarkus"
           sonar-org-key: "brianacharya001"
