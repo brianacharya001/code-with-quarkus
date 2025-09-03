@@ -21,6 +21,11 @@ on:
           - dev
           - staging
           - prod
+      security_scan:
+        description: "Run security scan"
+        required: true
+        default: false
+        type: boolean
 
   # Uncomment these if you want to trigger on push/PR
   # push:
