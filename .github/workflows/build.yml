@@ -35,21 +35,13 @@ jobs:
       - name: Run tests
         run: mvn test
 
-      # - name: Scan and Publish to SonarCloud
-      #   uses: chill-viking/dotnet-sonar-scanner@v2
-      #   with:
-      #     sonar-project-key: "brianacharya001_code-with-quarkus"
-      #     sonar-org-key: "brianacharya001"
-      #     token: ${{ secrets.GIT_TOKEN }}
-      #     sonar-token: ${{ secrets.SONAR_TOKEN }}
-      #     #working-directory: './src/dotnet-api'
-      #     checkout: false
+     
 
       - name: Upload JAR to S3
         run: |
           FILE=$(find target -type f -name "*.jar" | head -n 1)
           if [ -z "$FILE" ]; then
-            echo "❌ JAR file not found. Failing the job."
+            echo "JAR file not found. Failing the job."
             exit 1
           fi
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
