@@ -3,15 +3,24 @@ name: Build and Test Spring Boot App
 on:
   workflow_dispatch:
     inputs:
-      environment:
+      branch:
         description: "Choose branch to deploy"
         required: true
         default: "development"
         type: choice
         options:
           - development
+          - feature
+          - hotfix
+      environment:
+        description: "Choose environment"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
           - staging
-          - production
+          - prod
 
   # Uncomment these if you want to trigger on push/PR
   # push:
