@@ -2,6 +2,17 @@ name: Build and Test Spring Boot App
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Choose branch to deploy"
+        required: true
+        default: "development"
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
   # Uncomment these if you want to trigger on push/PR
   # push:
   #   branches: [main]
@@ -34,8 +45,6 @@ jobs:
 
       - name: Run tests
         run: mvn test
-
-     
 
       - name: Upload JAR to S3
         run: |
